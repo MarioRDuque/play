@@ -21,9 +21,12 @@
   ?>
 
   <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
+    <div class="row pt-5">
+      <div class="col-md-9">
         <h1>Lista De Resultados</h1>
+      </div>
+      <div class="col-md-3 text-right">
+        <a class="btn btn-primary" href="reiniciar.php">Nueva Pregunta</a>
       </div>
       <br>
 

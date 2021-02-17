@@ -76,6 +76,8 @@ if ($_REQUEST) {
 
         <div class="col-md-12 text-center p-5">
           <h1>Espere la siguiente pregunta.</h1>
+          <br>
+          <button type='button' id='continuar' onclick='continuar()' class='btn btn-primary'>Continuar.</button>
         </div>
 
       <?php } ?>
@@ -86,6 +88,11 @@ if ($_REQUEST) {
       function activarCargando() {
         document.getElementById("cargando").hidden = false;
         document.getElementById("enviar").hidden = true;
+      }
+
+      function continuar() {
+        window.location.href = window.location.pathname + "?responder=true";
+        window.location.reload;
       }
     </script>
   </div>
