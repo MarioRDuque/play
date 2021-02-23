@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 
+
+<?php
+$archivo = basename(__FILE__, ".php");
+?>
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesa 1</title>
+  <title><?php echo $archivo ?></title>
   <link rel="stylesheet" href="utiles/bootstrap.min.css">
   <link rel="stylesheet" href="utiles/clases.css">
   <script src="utiles/jquery.js"></script>
@@ -15,7 +20,6 @@
 <?php
 $responder = false;
 $error = false;
-$archivo = basename(__FILE__, ".php");
 if ($_REQUEST) {
   if (isset($_REQUEST['responder'])) {
     $responder = $_REQUEST['responder'];
@@ -27,12 +31,20 @@ if ($_REQUEST) {
 ?>
 
 <body>
+  <div class="header p-4 text-right">
+    <img src="utiles/logo.png" height="100" width="100" alt="">
+  </div>
   <div class="container p-5">
-    <div class="row">
+    <div class="row card">
+
+      <div class="card-header text-uppercase">
+        <?php echo $archivo ?>
+      </div>
+
       <div class="col-md-12 text-center">
         <?php if ($error) { ?>
 
-          <div class='alert alert-danger' role='alert' id='alerta'>
+          <div class='alert alert-danger pt-5' role='alert' id='alerta'>
             <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
             <strong>Error!</strong> $error
           </div>
@@ -42,7 +54,7 @@ if ($_REQUEST) {
 
       <?php if ($responder) { ?>
 
-        <form action='responder.php' class='col-md-12 text-center' method="POST">
+        <form action='responder.php' class='col-md-12 text-center pt-5' method="POST">
 
           <input type="text" hidden name="mesa" value="<?php echo $archivo ?>">
 

@@ -4,3 +4,9 @@
 .btn-success.active{
   background-color: #007bff!important;
 }
+.header {
+  text-align: center;
+  background: #4c7a9c;
+  color: white;
+  font-size: 30px;
+}

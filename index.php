@@ -20,35 +20,29 @@
   $resultados = $sentencia->fetchAll(PDO::FETCH_OBJ);
   ?>
 
-  <div class="container">
-    <div class="row pt-5">
-      <div class="col-md-9">
-        <h1>Lista De Resultados</h1>
-      </div>
-      <div class="col-md-3 text-right">
-        <a class="btn btn-primary" href="reiniciar.php">Nueva Pregunta</a>
-      </div>
-      <br>
+  <div class="header p-4 text-right">
+    <img src="utiles/logo.png" height="100" width="100" alt="">
+  </div>
 
+  <div class="container pt-5">
+    <div class="row card">
+      <div class="card-header col-md-12">
+        <h3>Lista De Resultados</h3>
+      </div>
       <body>
         <div class="table-responsive">
-          <table class="table table-bordered">
+          <table class="table table-bordered mb-0">
             <thead class="thead-dark">
               <tr>
                 <th>MESA</th>
                 <th>RESPUESTA</th>
-                <th>FECHA</th>
-                <th>ESTADO</th>
               </tr>
             </thead>
             <tbody>
-              <br>
               <?php foreach ($resultados as $resultado) { ?>
                 <tr>
                   <td><?php echo $resultado->mesa ?></td>
                   <td><?php echo $resultado->respuesta ?></td>
-                  <td><?php echo $resultado->fecha ?></td>
-                  <td><?php echo $resultado->correcta ?></td>
                 </tr>
               <?php } ?>
             </tbody>
@@ -57,7 +51,7 @@
       </body>
     </div>
   </div>
-
+  <br><br>
 </body>
 
 </html>
