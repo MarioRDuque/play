@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="utiles/bootstrap.min.css">
   <link rel="stylesheet" href="utiles/clases.css">
   <script src="utiles/jquery.js"></script>
+  <script src="utiles/contador.js"></script>
   <script src="utiles/bootstrap.min.js"></script>
 </head>
 
@@ -25,10 +26,22 @@
   </div>
 
   <div class="container pt-5">
-    <div class="row card">
-      <div class="card-header col-md-12">
-        <h3>Lista De Resultados</h3>
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Lista De Resultados</h3>
+          </div>
+          <div class="col-md-4 text-center">
+            <h3 id="counter"></h3>
+            <button hidden id="refresh" type="button" onclick="refrescar()" class="btn btn-sm btn-success">Refrescar Respuestas</button>
+          </div>
+          <div class="col-md-4 text-right">
+            <button type="button" class="btn btn-sm btn-danger" onclick="finalizar()">Finalizar Respuestas</button>
+          </div>
+        </div>
       </div>
+
       <body>
         <div class="table-responsive">
           <table class="table table-bordered mb-0">
