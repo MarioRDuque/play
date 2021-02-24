@@ -9,17 +9,11 @@
   <link rel="stylesheet" href="utiles/bootstrap.min.css">
   <link rel="stylesheet" href="utiles/clases.css">
   <script src="utiles/jquery.js"></script>
-  <script src="utiles/contador.js"></script>
+  <script src="utiles/chart.js"></script>
   <script src="utiles/bootstrap.min.js"></script>
 </head>
 
 <body>
-
-  <?php
-  include_once "utiles/base_de_datos.php";
-  $sentencia = $base_de_datos->query("select * from resultados");
-  $resultados = $sentencia->fetchAll(PDO::FETCH_OBJ);
-  ?>
 
   <div class="header p-4 text-right">
     <img src="utiles/logo.png" height="100" width="100" alt="">
@@ -51,20 +45,82 @@
                 <th>RESPUESTA</th>
               </tr>
             </thead>
-            <tbody>
-              <?php foreach ($resultados as $resultado) { ?>
-                <tr>
-                  <td><?php echo $resultado->mesa ?></td>
-                  <td><?php echo $resultado->respuesta ?></td>
-                </tr>
-              <?php } ?>
+            <tbody id="cuerpo">
             </tbody>
           </table>
         </div>
+
+        <canvas id="myChart" width="400" height="200"></canvas>
+
       </body>
     </div>
+
   </div>
+
+
+  <script>
+    // var ctx = document.getElementById('myChart').getContext('2d');
+    // var myChart = new Chart(ctx, {
+    //   type: 'bar',
+    //   data: {
+    //     labels: ['A', 'B', 'C', 'D'],
+    //     datasets: [{
+    //       label: 'Numero de Votos',
+    //       data: [12, 19, 3, 5],
+    //       backgroundColor: [
+    //         'rgba(255, 99, 132, 0.2)',
+    //         'rgba(54, 162, 235, 0.2)',
+    //         'rgba(255, 206, 86, 0.2)',
+    //         'rgba(75, 192, 192, 0.2)'
+    //       ],
+    //       borderColor: [
+    //         'rgba(255, 99, 132, 1)',
+    //         'rgba(54, 162, 235, 1)',
+    //         'rgba(255, 206, 86, 1)',
+    //         'rgba(75, 192, 192, 1)'
+    //       ],
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     events: ['click'],
+    //     onClick: function(c, i) {
+    //       e = i[0];
+    //       if (e) {
+    //         var x_value = this.data.labels[e._index];
+    //         $.ajax({
+    //           data: {
+    //             codigo: x_value
+    //           },
+    //           url: 'refrescar.php',
+    //           type: 'post',
+    //           success: function(response) {
+    //             if (response) {
+    //               response = $.parseJSON(response);
+    //               $("#cuerpo").html("");
+    //               for (var i = 0; i < response.length; i++) {
+    //                 var tr = `<tr>
+    //                 <td>` + response[i].mesa + `</td>
+    //                 <td>` + response[i].respuesta + `</td>
+    //               </tr>`;
+    //                 $("#cuerpo").append(tr)
+    //               }
+    //             }
+    //           }
+    //         })
+    //       }
+    //     },
+    //     scales: {
+    //       yAxes: [{
+    //         ticks: {
+    //           beginAtZero: true
+    //         }
+    //       }]
+    //     }
+    //   }
+    // });
+  </script>
   <br><br>
 </body>
-
+<script src="utiles/contador.js"></script>
 </html>
