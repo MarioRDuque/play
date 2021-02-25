@@ -3,6 +3,9 @@ var segundos = 0;
 
 var ctx = document.getElementById('myChart').getContext('2d');
 
+var resultados = [];
+var myChart;
+
 var myVar = setInterval(myTimer, 1000);
 refrescar();
 
@@ -45,6 +48,7 @@ function refrescar() {
     success: (response) => {
       if (response) {
         response = $.parseJSON(response);
+        this.resultados = response;
         $("#cuerpo").html("");
         document.getElementById("mesas").innerHTML = "Mesas Participantes: " + response.length;
         for (var i = 0; i < response.length; i++) {
@@ -76,7 +80,7 @@ function refrescar() {
   });
 
   function construirChart(data) {
-    var myChart = new Chart(ctx, {
+    this.myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ['A', 'B', 'C', 'D'],
@@ -100,30 +104,23 @@ function refrescar() {
       },
       options: {
         events: ['click'],
-        onClick: function (c, i) {
+        onClick: (c, i) => {
           e = i[0];
           if (e) {
-            var x_value = this.data.labels[e._index];
-            $.ajax({
-              data: {
-                codigo: x_value
-              },
-              url: 'refrescar.php',
-              type: 'post',
-              success: function (response) {
-                if (response) {
-                  response = $.parseJSON(response);
-                  $("#cuerpo").html("");
-                  for (var i = 0; i < response.length; i++) {
-                    var tr = `<tr>
-                        <td>` + response[i].mesa + `</td>
-                        <td>` + response[i].respuesta + `</td>
-                      </tr>`;
-                    $("#cuerpo").append(tr)
-                  }
+            var x_value = this.myChart.data.labels[e._index];
+            if (resultados) {
+              var filtros = this.resultados.filter(item => item.respuesta == x_value);
+              if (filtros) {
+                $("#cuerpo").html("");
+                for (var i = 0; i < filtros.length; i++) {
+                  var tr = `<tr>
+                          <td>` + filtros[i].mesa + `</td>
+                          <td>` + filtros[i].respuesta + `</td>
+                        </tr>`;
+                  $("#cuerpo").append(tr)
                 }
               }
-            })
+            }
           }
         },
         scales: {
