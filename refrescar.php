@@ -7,7 +7,7 @@
 $codigo = $_POST['codigo'];
 
 include_once "utiles/base_de_datos.php";
-if($codigo){
+if ($codigo) {
   $query = "select * from resultados WHERE respuesta = '$codigo';";
 } else {
   $query = "select * from resultados";
