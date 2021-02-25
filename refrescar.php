@@ -8,9 +8,10 @@ $codigo = $_POST['codigo'];
 
 include_once "utiles/base_de_datos.php";
 if ($codigo) {
-  $query = "select * from resultados WHERE respuesta = '$codigo';";
+  $query = "select distinct ON (mesa) mesa, respuesta, fecha from resultados WHERE respuesta = '$codigo' order by mesa, fecha desc;";
+  // $query = "select * from resultados WHERE respuesta = '$codigo';";
 } else {
-  $query = "select * from resultados";
+  $query = "select distinct ON (mesa) mesa, respuesta, fecha from resultados order by mesa, fecha desc;";
 }
 
 $sentencia = $base_de_datos->query($query);

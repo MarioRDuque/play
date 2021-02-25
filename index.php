@@ -16,10 +16,10 @@
 <body>
 
   <div class="header p-4 text-right">
-    <img src="utiles/logo.png" height="100" width="100" alt="">
+    <img src="utiles/logo.png" height="60" width="60" alt="">
   </div>
 
-  <div class="container pt-5">
+  <div class="container pt-3">
     <div class="card">
       <div class="card-header">
         <div class="row">
@@ -36,10 +36,13 @@
         </div>
       </div>
 
-      <canvas id="myChart" width="400" height="200"></canvas>
+      <canvas id="myChart" width="400" height="150"></canvas>
 
       <body>
-        <div class="table-responsive">
+        <div class="text-right">
+          <h3 class="pr-2" id="mesas"></h3>
+        </div>
+        <div class="table-responsive pt-3">
           <table class="table table-bordered mb-0">
             <thead class="thead-dark">
               <tr>
@@ -56,70 +59,6 @@
     </div>
 
   </div>
-
-
-  <script>
-    // var ctx = document.getElementById('myChart').getContext('2d');
-    // var myChart = new Chart(ctx, {
-    //   type: 'bar',
-    //   data: {
-    //     labels: ['A', 'B', 'C', 'D'],
-    //     datasets: [{
-    //       label: 'Numero de Votos',
-    //       data: [12, 19, 3, 5],
-    //       backgroundColor: [
-    //         'rgba(255, 99, 132, 0.2)',
-    //         'rgba(54, 162, 235, 0.2)',
-    //         'rgba(255, 206, 86, 0.2)',
-    //         'rgba(75, 192, 192, 0.2)'
-    //       ],
-    //       borderColor: [
-    //         'rgba(255, 99, 132, 1)',
-    //         'rgba(54, 162, 235, 1)',
-    //         'rgba(255, 206, 86, 1)',
-    //         'rgba(75, 192, 192, 1)'
-    //       ],
-    //       borderWidth: 1
-    //     }]
-    //   },
-    //   options: {
-    //     events: ['click'],
-    //     onClick: function(c, i) {
-    //       e = i[0];
-    //       if (e) {
-    //         var x_value = this.data.labels[e._index];
-    //         $.ajax({
-    //           data: {
-    //             codigo: x_value
-    //           },
-    //           url: 'refrescar.php',
-    //           type: 'post',
-    //           success: function(response) {
-    //             if (response) {
-    //               response = $.parseJSON(response);
-    //               $("#cuerpo").html("");
-    //               for (var i = 0; i < response.length; i++) {
-    //                 var tr = `<tr>
-    //                 <td>` + response[i].mesa + `</td>
-    //                 <td>` + response[i].respuesta + `</td>
-    //               </tr>`;
-    //                 $("#cuerpo").append(tr)
-    //               }
-    //             }
-    //           }
-    //         })
-    //       }
-    //     },
-    //     scales: {
-    //       yAxes: [{
-    //         ticks: {
-    //           beginAtZero: true
-    //         }
-    //       }]
-    //     }
-    //   }
-    // });
-  </script>
   <br><br>
 </body>
 <script src="utiles/contador.js"></script>

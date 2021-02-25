@@ -46,6 +46,7 @@ function refrescar() {
       if (response) {
         response = $.parseJSON(response);
         $("#cuerpo").html("");
+        document.getElementById("mesas").innerHTML = "Mesas Participantes: " + response.length;
         for (var i = 0; i < response.length; i++) {
           switch (response[i].respuesta) {
             case "A":
