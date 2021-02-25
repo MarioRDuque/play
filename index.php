@@ -28,13 +28,15 @@
           </div>
           <div class="col-md-4 text-center">
             <h3 id="counter"></h3>
-            <button hidden id="refresh" type="button" onclick="refrescar()" class="btn btn-sm btn-success">Refrescar Respuestas</button>
+            <button hidden id="refresh" type="button" onclick="refrescar()" class="btn btn-sm btn-success">Ver Respuestas</button>
           </div>
           <div class="col-md-4 text-right">
-            <button type="button" class="btn btn-sm btn-danger" onclick="finalizar()">Finalizar Respuestas</button>
+            <button type="button" class="btn btn-sm btn-danger" onclick="finalizar()">Nueva Pregunta</button>
           </div>
         </div>
       </div>
+
+      <canvas id="myChart" width="400" height="200"></canvas>
 
       <body>
         <div class="table-responsive">
@@ -49,8 +51,6 @@
             </tbody>
           </table>
         </div>
-
-        <canvas id="myChart" width="400" height="200"></canvas>
 
       </body>
     </div>
@@ -123,4 +123,5 @@
   <br><br>
 </body>
 <script src="utiles/contador.js"></script>
+
 </html>
