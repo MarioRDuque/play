@@ -150,5 +150,6 @@ function esperar() {
     this.segundos = 60;
   }
   document.getElementById("cargando").hidden = false;
+  document.getElementById("counter").innerHTML = segundos;
   this.myVar = setInterval(myTimer, 1000);
 }
