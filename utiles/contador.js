@@ -47,11 +47,12 @@ function refrescar() {
     data: {
       "codigo": null
     },
+    dataType: "json",
     url: 'refrescar.php',
     type: 'post',
     success: (response) => {
       if (response) {
-        response = $.parseJSON(response);
+        response = Object.values(response);
         this.resultados = response;
         $("#cuerpo").html("");
         document.getElementById("mesas").innerHTML = "Mesas Participantes: " + response.length;

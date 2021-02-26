@@ -16,4 +16,4 @@ if ($codigo) {
 
 $sentencia = $base_de_datos->query($query);
 $resultados = $sentencia->fetchAll(PDO::FETCH_OBJ);
-echo json_encode($resultados);
+echo json_encode($resultados, JSON_FORCE_OBJECT);
