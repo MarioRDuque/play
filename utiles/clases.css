@@ -10,3 +10,25 @@
   color: white;
   font-size: 30px;
 }
+
+canvas {
+  background-image: url(logo3.png);
+  background-repeat: round;
+}
+
+.pantalla-completa{
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+.content {
+  color: #fff;
+}
+.opaco {
+  opacity: .4;
+}

@@ -6,23 +6,27 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var resultados = [];
 var myChart;
 
-var myVar = setInterval(myTimer, 1000);
+var myVar;
 refrescar();
 
 function myTimer() {
-  this.segundos++;
+  this.segundos--;
   document.getElementById("counter").innerHTML = segundos;
-  if (this.segundos == 60) {
+  if (this.segundos == 0) {
     clearInterval(this.myVar);
     document.getElementById("refresh").hidden = false;
-    document.getElementById("counter").hidden = true;
+    // document.getElementById("counter").hidden = true;
+    document.getElementById("cargando").hidden = true;
+    document.getElementById("form-espera").hidden = true;
   }
 }
 
 function finalizar() {
   clearInterval(this.myVar);
-  this.segundos = 0;
-  this.myVar = setInterval(myTimer, 1000);
+  // this.segundos = 0;
+  // this.myVar = setInterval(myTimer, 1000);
+  document.getElementById("refresh").hidden = true;
+    document.getElementById("form-espera").hidden = false;
   $.ajax({
     data: {
     },
@@ -38,7 +42,7 @@ function refrescar() {
   clearInterval(this.myVar);
   var data = [0, 0, 0, 0];
   this.segundos = 0;
-  this.myVar = setInterval(myTimer, 1000);
+  // this.myVar = setInterval(myTimer, 1000);
   $.ajax({
     data: {
       "codigo": null
@@ -136,4 +140,14 @@ function refrescar() {
 
 
 
+}
+
+function esperar() {
+  this.segundos = document.getElementById("contador").value;
+  if (this.segundos > 0) {
+  } else {
+    this.segundos = 60;
+  }
+  document.getElementById("cargando").hidden = false;
+  this.myVar = setInterval(myTimer, 1000);
 }

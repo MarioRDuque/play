@@ -15,8 +15,15 @@
 
 <body>
 
-  <div class="header p-4 text-right">
+  <!-- <div class="header p-4 text-right">
     <img src="utiles/logo.png" height="60" width="60" alt="">
+  </div> -->
+
+  <div class="pantalla-completa opaco" hidden id="cargando">
+    <div class="content text-center" style="padding-top: 20%">
+      <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+      <h5 style="font-size: 200px;" id="counter">Cargando...</h5>
+    </div>
   </div>
 
   <div class="container pt-3">
@@ -24,10 +31,14 @@
       <div class="card-header">
         <div class="row">
           <div class="col-md-4">
-            <h3>Lista De Resultados</h3>
+            <h3>Respuestas</h3>
           </div>
           <div class="col-md-4 text-center">
-            <h3 id="counter"></h3>
+            <div class="input-group mb-3" id="form-espera">
+              <input type="number" id="contador" value="120" class="form-control">
+              <span style="cursor: pointer;" class="input-group-text btn btn-primary" onclick="esperar()">Establecer Espera</span>
+            </div>
+            <!-- <h3 id="counter"></h3> -->
             <button hidden id="refresh" type="button" onclick="refrescar()" class="btn btn-sm btn-success">Ver Respuestas</button>
           </div>
           <div class="col-md-4 text-right">
@@ -35,6 +46,10 @@
           </div>
         </div>
       </div>
+
+      <!-- habilitar un botón que permita colocarle los 
+      segundos de espera y que esa cuenta sea regresiva y se sobreponga a todo 
+      ... y cuando llegue a cero accione el efecto de "refrescar respuestas" -->
 
       <canvas id="myChart" width="400" height="150"></canvas>
 
