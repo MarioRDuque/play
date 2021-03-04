@@ -14,6 +14,7 @@
 canvas {
   background-image: url(logo3.png);
   background-repeat: round;
+  background-size: contain;
 }
 
 .pantalla-completa{
