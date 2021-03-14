@@ -15,7 +15,6 @@ function myTimer() {
   if (this.segundos == 0) {
     clearInterval(this.myVar);
     document.getElementById("refresh").hidden = false;
-    // document.getElementById("counter").hidden = true;
     document.getElementById("cargando").hidden = true;
     document.getElementById("form-espera").hidden = true;
   }
@@ -23,10 +22,8 @@ function myTimer() {
 
 function finalizar() {
   clearInterval(this.myVar);
-  // this.segundos = 0;
-  // this.myVar = setInterval(myTimer, 1000);
   document.getElementById("refresh").hidden = true;
-    document.getElementById("form-espera").hidden = false;
+  document.getElementById("form-espera").hidden = false;
   $.ajax({
     data: {
     },
@@ -34,6 +31,22 @@ function finalizar() {
     type: 'post',
     success: function (response) {
       refrescar();
+    }
+  })
+}
+
+function reiniciarPuntajes() {
+  $.ajax({
+    data: {
+    },
+    url: 'reiniciarpuntaje.php',
+    type: 'post',
+    success: function (response) {
+      if (response == 1) {
+        toastr.success("Se reiniciaron los puntajes.");
+      } else {
+        toastr.warning(response);
+      }
     }
   })
 }
@@ -139,8 +152,6 @@ function refrescar() {
     });
   }
 
-
-
 }
 
 function esperar() {
@@ -152,4 +163,82 @@ function esperar() {
   document.getElementById("cargando").hidden = false;
   document.getElementById("counter").innerHTML = segundos;
   this.myVar = setInterval(myTimer, 1000);
+}
+
+function establecerRespuesta() {
+  document.getElementById("load").hidden = true;
+  document.getElementById("guardarCambios").hidden = false;
+  var titulo = document.getElementById("exampleModalLabel");
+  if (titulo) {
+    document.getElementById("exampleModalLabel").innerHTML = "Establecer Puntaje";
+  }
+  document.getElementById("puntaje").hidden = false;
+  document.getElementById("top").hidden = true;
+}
+
+function verTop10() {
+  document.getElementById("load").hidden = true;
+  document.getElementById("guardarCambios").hidden = true;
+  var titulo = document.getElementById("exampleModalLabel");
+  if (titulo) {
+    document.getElementById("exampleModalLabel").innerHTML = "Ver Top 10";
+  }
+  document.getElementById("top").hidden = false;
+  document.getElementById("puntaje").hidden = true;
+
+  $.ajax({
+    data: {},
+    dataType: "json",
+    url: 'top10.php',
+    type: 'post',
+    success: (response) => {
+      if (response) {
+        response = Object.values(response);
+        $("#cuerpoPuntaje").html("");
+        for (var i = 0; i < response.length; i++) {
+          var tr = `<tr>
+          <td>`+ response[i].mesa + `</td>
+          <td>`+ response[i].puntaje + `</td>
+          </tr>`;
+          $("#cuerpoPuntaje").append(tr);
+        }
+      }
+    }
+  });
+
+}
+
+function aumentarPuntajes() {
+  var seleccion = document.getElementById("seleccion").value;
+  var punto = document.getElementById("puntos").value;
+  if (seleccion && punto) {
+    var filtros = this.resultados.filter(item => item.respuesta == seleccion);
+    if (filtros && filtros.length > 0) {
+      document.getElementById("load").hidden = false;
+      document.getElementById("guardarCambios").hidden = true;
+      $.ajax({
+        data: {
+          seleccion: seleccion,
+          punto: punto,
+          filtros: JSON.stringify(filtros)
+        },
+        dataType: "json",
+        url: 'aumentarpuntaje.php',
+        type: 'post',
+        success: function (response) {
+          if (response == 1) {
+            toastr.success("Se actualizaron los puntajes.");
+            finalizar();
+            verTop10();
+          } else {
+            toastr.warning(response);
+          }
+        }
+      })
+    } else {
+      toastr.warning('Nadie respondió con la alternativa: ' + seleccion)
+    }
+  } else {
+    toastr.warning('Complete la información');
+  }
 }

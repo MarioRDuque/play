@@ -7,3 +7,8 @@ CREATE TABLE resultados(
    fecha timestamp not null,
    correcta boolean
 );
+
+CREATE TABLE puntajes(
+   mesa text not null primary key,
+   puntaje text not null
+);
